@@ -18,6 +18,7 @@ const ExampleTinyFrontend: React.FC<ExampleTinyFrontendProps> = ({
 
       <div className={styles.descriptionContainer}>
         Rayyan inner app 1 
+        Test
       </div>
 
       <Button onClick={() => setValue((value) => value + 1)}>
