@@ -10,7 +10,11 @@ const ExampleTinyFrontend: React.FC<ExampleTinyFrontendProps> = ({
   client
 }) => {
   const [value, setValue] = useState(0);
-
+  useEffect(()=>{
+    client?.subscribe((data)=>{
+      console.log("The nano app has received the follwing", data, " I am the nano app");
+    })
+  },[]);
   useEffect(() => onCounterChange?.(value), [value, onCounterChange]);
 
   return (
