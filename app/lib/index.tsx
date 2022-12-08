@@ -7,6 +7,7 @@ import styles from "./index.module.css";
 const ExampleTinyFrontend: React.FC<ExampleTinyFrontendProps> = ({
   name,
   onCounterChange,
+  client
 }) => {
   const [value, setValue] = useState(0);
 
@@ -14,14 +15,26 @@ const ExampleTinyFrontend: React.FC<ExampleTinyFrontendProps> = ({
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Hello {name}! 🎉</h1>
+      <h1 className={styles.title}>Hello Inner App! 🎉</h1>
 
       <div className={styles.descriptionContainer}>
         Rayyan inner app 1 
         Test
       </div>
 
-      <Button onClick={() => setValue((value) => value + 1)}>
+      <Button onClick={() => {
+        if(client){
+          client.publish("HELLO_WORLD",{
+            value:value
+          })
+          try{
+
+            setValue((value) => value + 1)
+          }catch(e){
+
+          }
+        }
+      }}>
         Rayyam Action from outside
       </Button>
     </div>
